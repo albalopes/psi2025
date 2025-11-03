@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{url_for('compras')}}" method="post">
+        <input type="checkbox" name="item" value="Arroz">Arroz<br>
+        <input type="checkbox" name="item" value="Feijão">Feijão<br>
+        <input type="checkbox" name="item" value="Macarrão">Macarrão<br>
+        <button type="submit">Comprar</button>
+    </form>
+</body>
+</html>
