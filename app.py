@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -34,6 +34,22 @@ def semestre(x):
 @app.route('/soma/<int:n1>/<int:n2>')
 def soma(n1, n2):
     return str(n1+n2)
+
+@app.route('/dados')
+def dados():
+    return render_template('dados.html')
+
+@app.route('/recebedados', methods=['POST'])
+def recebedados():
+    #nome = request.args['nome']
+    #telefone = request.args['telefone']
+    nome = request.form['nome']
+    telefone = request.form['telefone']
+    estado = request.form['estado']
+    #escolaridade = request.form['esc']
+    escolaridade = request.form.getlist('esc')
+
+    return f"{nome} - {telefone} - {estado} - {escolaridade}"
 
 if __name__ == '__main__':
     app.run()

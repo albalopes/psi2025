@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <form action="{{url_for('recebedados')}}" method="post">
+            <label>Nome: </label>
+            <input type="text" name="nome"><br>
+            <label>Telefone: </label>
+            <input type="text" name="telefone"><br>
+            <label>Estado: </label>
+            <select name="estado">
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="PB">Paraíba</option>
+                <option value="PE">Pernambuco</option>
+            </select>
+            <br>
+
+            <label>Escolaridade: </label><br>
+            <input type="checkbox" name="esc" value="fund">Ensino Fundamental <br>
+            <input type="checkbox" name="esc" value="med">Ensino Médio <br>
+            <input type="checkbox" name="esc" value="sup">Ensino Superior <br>
+
+
+            <button type="submit">Enviar</button>
+
+            
+        </form>
+    </body>
+</html>
