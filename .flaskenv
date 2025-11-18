@@ -1,0 +1,7 @@
+FLASK_APP=app:app
+SECRET_KEY=sua-palavra-secreta
+DB_USERNAME=psi2025
+DB_PASSWORD=1nf02025P$1
+DB_HOST=fases.site
+DB_DATABASE=psi2025_pizzanossa
+DB_PORT=3308
