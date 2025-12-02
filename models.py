@@ -6,7 +6,7 @@ class Usuario(db.Model):
     nome = db.Column(db.String(100))
     email = db.Column(db.String(100))
     senha = db.Column(db.String(100))
-
+    
     def __init__(self, nome, email, senha):
         self.nome = nome
         self.email = email
@@ -14,3 +14,12 @@ class Usuario(db.Model):
     
     def __repr__(self):
         return "<Usuario {}>".format(self.nome)
+
+class Tarefa(db.Model):
+    id = db.Column(db.Integer, primary_key= True)
+    descricao = db.Column(db.String(200), unique=True, nullable=False)
+    prioridade = db.Column(db.Integer)
+
+    def __init__(self, descricao, prioridade):
+        self.descricao = descricao
+        self.prioridade = prioridade

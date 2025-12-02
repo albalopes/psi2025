@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula SQLalchemy</title>
+  </head>
+  <body>
+    
+    <h1>Lista de Tarefas do Dia</h1>
+    <ul>
+      {% for t in tarefas %}
+        <li>
+          {{t.descricao}} - {{t.prioridade}}
+          <a href="{{url_for('delete_tarefa', id=t.id)}}">Excluir</a>
+        </li>
+      {% endfor %}
+    </ul>
+    
+    <h1>Adicionar nova tarefa</h1>
+
+    <form action="{{url_for('create_tarefa')}}" method="POST">
+      <input
+        type="text"
+        name="descricao"
+        placeholder="Nova tarefa"
+        required
+      />
+      Prioridade: 
+      <select name="prioridade">
+        <option value='1'>1</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+        <option value='4'>4</option>
+        <option value='5'>5</option>
+      </select>
+      <button type="submit">Adicionar</button>
+    </form>
+    
+  </body>
+</html>
