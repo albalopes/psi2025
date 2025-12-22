@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{url_for('verificarlogin')}}" method="post">
-        <label>Login: </label>
-        <input type="text" name="login"><br>
+    <form action="{{url_for('autenticar')}}" method="post">
+        <label>E-mail: </label>
+        <input type="text" name="email"><br>
         <label>Senha: </label>
         <input type="password" name="senha"><br>
         <button type="submit">Entrar</button>

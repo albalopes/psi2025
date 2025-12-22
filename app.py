@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, url_for,  redirect
-from utils import db
+from utils import db, lm
 import os
 from models import Usuario, Tarefa
 from flask_migrate import Migrate
+from flask_login import login_user, logout_user
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
@@ -17,12 +18,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = conexao
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+lm.init_app(app)
 migrate = Migrate(app, db)
 
 
 @app.route('/')
 def index():
-    return 'Teste 123!'
+    return render_template('principal.html')
 
 @app.route('/contato')
 def contato():
@@ -128,6 +130,29 @@ def delete_tarefa(id):
     db.session.commit()
     return redirect(url_for('tarefa'))
 
+@lm.user_loader
+def load_user(id):
+    usuario = Usuario.query.filter_by(id=id).first()
+    return usuario
+
+@app.route('/autenticar', methods=['POST'])
+def autenticar():
+    email = request.form['email']
+    senha = request.form['senha']
+    usuario = Usuario.query.filter_by(email=email).first()
+    if (usuario and senha == usuario.senha):
+        login_user(usuario)
+        return redirect(url_for('index'))
+    else:
+        #return "Dados incorretos"
+        return redirect(url_for('login'))
+
+
+@app.route('/logoff')
+def logoff():
+    logout_user()
+    return redirect(url_for('login'))
+    
 '''
 @app.route('/update/<int:tarefa_id>', methods['POST'])
 def update_tarefa(tarefa_id):

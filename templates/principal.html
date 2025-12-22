@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>Início</li>
+            {% if current_user.is_authenticated %}
+                <li> <a href="{{url_for('logoff')}}">Sair</a></li> 
+            {% else %}
+                <li> <a href="{{url_for('login')}}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    {% if current_user.is_authenticated %}
+        <h2>Olá {{current_user.nome}}</h2>
+    {% else %}
+     <h2>Olá visitante</h2>
+    {% endif %}
+
+</body>
+</html>
